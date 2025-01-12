@@ -28,7 +28,7 @@ Clarification: The application JAR file is already built by Maven manually and i
     ./start.sh
     ```
 
-This script will navigate to the directory containing the `compose.yml` file and run `docker-compose up -d` to start the services in detached mode.
+This script will navigate to the directory containing the `compose.yml` file and run `docker-compose up` to start the services. Please make sure that the port `8080` and `3306` are not in use.
 
 ## Available Endpoints
 
