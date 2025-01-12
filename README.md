@@ -14,8 +14,8 @@ Clarification: The application JAR file is already built by Maven manually and i
 
 1. Clone the repository:
     ```
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone https://github.com/jxq0819/order.git
+    cd order
     ```
 
 2. Make the `start.sh` script executable:
