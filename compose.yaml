@@ -1,0 +1,25 @@
+services:
+  service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+          - /logs:/logs
+    depends_on:
+      - mysql_db
+
+  mysql_db:
+    image: mysql:8.0.33
+    container_name: mysql_db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: order_db
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_ROOT_HOST: '%'
+    restart: always
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./mysql-initdb:/docker-entrypoint-initdb.d

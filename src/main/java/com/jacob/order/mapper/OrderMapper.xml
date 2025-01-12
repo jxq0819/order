@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jacob.order.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.jacob.order.entity.Order">
+        <id property="id" column="id"/>
+        <result property="originLatitude" column="origin_latitude"/>
+        <result property="originLongitude" column="origin_longitude"/>
+        <result property="destinationLatitude" column="destination_latitude"/>
+        <result property="destinationLongitude" column="destination_longitude"/>
+        <result property="distance" column="distance"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <insert id="createOrder" useGeneratedKeys="true" keyColumn="ID" keyProperty="id"
+            parameterType="com.jacob.order.entity.Order">
+        INSERT INTO orders (origin_latitude, origin_longitude, destination_latitude, destination_longitude, distance,
+                            status)
+        VALUES (#{originLatitude}, #{originLongitude}, #{destinationLatitude}, #{destinationLongitude}, #{distance},
+                #{status})
+    </insert>
+
+    <update id="updateOrderStatus">
+        UPDATE orders
+        SET status = #{status}
+        WHERE id = #{id}
+    </update>
+    <select id="listOrders" resultMap="BaseResultMap">
+        SELECT id, distance, status
+        FROM orders LIMIT #{page}, #{limit}
+    </select>
+
+    <select id="getOrderStatusById" resultMap="BaseResultMap">
+        SELECT status
+        FROM orders
+        WHERE id = #{id}
+    </select>
+
+    <select id="getOrderById" resultMap="BaseResultMap">
+        SELECT id, distance, status
+        FROM orders
+        WHERE id = #{id}
+    </select>
+</mapper>
